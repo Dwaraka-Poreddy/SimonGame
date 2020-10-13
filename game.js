@@ -11,6 +11,7 @@ var buttonColors = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
 var started = false;
+var end = false;
 var level = 0;
 
 $(document).keypress(function () {
@@ -22,7 +23,7 @@ $(document).keypress(function () {
 });
 
 $(document).click(function () {
-  if (!started) {
+  if (!started && !end) {
     $("#level-title").text("Level " + level);
     nextSequence();
     started = true;
@@ -90,4 +91,8 @@ function startOver() {
   gamePattern = [];
   userClickedPattern = [];
   started = false;
+  end = true;
+  setTimeout(function () {
+    end = false;
+  }, 500);
 }
